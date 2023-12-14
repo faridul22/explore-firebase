@@ -1,4 +1,4 @@
-import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 import app from './../../../firebase/firebase.init';
 import { useState } from "react";
 
@@ -33,7 +33,14 @@ const Login = () => {
             });
     }
     const handleLogOut = () => {
-
+        signOut(auth)
+            .then(result => {
+                console.log(result)
+                setUser(null)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
     return (
         <div className=''>
